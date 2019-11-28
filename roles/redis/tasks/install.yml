@@ -1,0 +1,23 @@
+- name: Install the compilation environment package
+  yum:
+    name:
+      - gcc-c++
+      - tcl
+    state: present
+
+- name: create redis user
+  user:
+    comment: Redis Database Server
+    home: /var/lib/redis
+    shell: /sbin/nologin
+    user: redis
+    state: present
+
+- name: create redis log and run directory
+  file:
+    path: {{itme}}
+    state: directory
+    mode: '0755'
+  with_items:
+    - /var/log/redis
+    - /var/run/redis

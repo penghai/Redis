@@ -1,0 +1,7 @@
+- name: Copy the redis binary file
+  copy:
+    src: bin/
+    dest: /usr/bin/
+    mode: '0755'
+
+- name: 
