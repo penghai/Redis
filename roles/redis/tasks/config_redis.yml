@@ -1,7 +1,14 @@
-- name: Copy the redis binary file
-  copy:
-    src: bin/
-    dest: /usr/bin/
-    mode: '0755'
+- name: copy redis service file
+  template:
+    src: redis.service
+    dest: /usr/lib/systemd/system/redis.service
+    mode: '0644'
+  notify: systemctl daemon-reload
 
-- name: 
+- name: copy redis config file
+  template:
+    src: redis.conf
+    dest: /etc/redis.conf
+    group: root
+    owner: redis
+    mode: '0640'

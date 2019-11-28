@@ -1,2 +1,5 @@
 ---
 # handlers file for roles/redis
+
+- name: systemctl daemon-reload
+  shell: systemctl daemon-reload

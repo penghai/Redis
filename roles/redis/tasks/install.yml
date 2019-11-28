@@ -15,9 +15,27 @@
 
 - name: create redis log and run directory
   file:
-    path: {{itme}}
+    path: "{{item}}"
     state: directory
+    group: redis
+    owner: redis 
     mode: '0755'
   with_items:
     - /var/log/redis
     - /var/run/redis
+
+- name: Copy the redis binary file
+  copy:
+    src: bin/
+    dest: /usr/bin/
+    mode: '0755'
+
+- name: Set /etc/sysctl.conf
+  sysctl:
+    name: vm.overcommit_memory
+    value: '1'
+    state: present
+    sysctl_set: yes
+    reload: yes
+
+
