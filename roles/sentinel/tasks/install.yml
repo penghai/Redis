@@ -39,18 +39,26 @@
 
 - name: overcommit_memory is set to 1
   sysctl:
-    name: vm.overcommit_memory
-    value: '1'
+    name: '{{ item.name }}'
+    value: '{{ item.value }}'
     state: present
     sysctl_set: yes
     reload: yes
+  with_items:
+    - { name: 'vm.overcommit_memory',value: '1' }
+    - { name: 'net.ipv4.tcp_max_syn_backlog',value: '8192' }
+    - { name: 'net.core.somaxconn',value: '1024' }
 
 - name: THP is disabled 
   blockinfile:
     path: /etc/rc.local
     block: "echo never > /sys/kernel/mm/transparent_hugepage/enabled"
     state: present
-  notify: source /etc/rc.local
+  register: info
+
+- name: source /etc/rc.local
+  shell: source /etc/rc.local
+  when: info.changed
 
 - name: copy redis-shutdown
   template:

@@ -1,8 +1,5 @@
 ---
 # handlers file for roles/sentinel
 
-- name: source /etc/rc.local
-  shell: source /etc/rc.local
-
 - name: systemctl daemon-reload
   shell: systemctl daemon-reload

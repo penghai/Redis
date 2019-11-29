@@ -3,7 +3,11 @@
     src: redis.service
     dest: /usr/lib/systemd/system/redis.service
     mode: '0644'
-  notify: systemctl daemon-reload
+  register: info_service
+
+- name: systemctl daemon-reload
+  shell: systemctl daemon-reload
+  when: info_service.changed
 
 - name: copy redis config file
   template:
@@ -12,7 +16,6 @@
     group: root
     owner: redis
     mode: '0640'
-  notify: restart redis
 
 - name: start redis
   service:

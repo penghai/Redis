@@ -1,12 +1,6 @@
 ---
 # handlers file for roles/redis
 
-- name: source /etc/rc.local
-  shell: source /etc/rc.local
-
-- name: systemctl daemon-reload
-  shell: systemctl daemon-reload
-
 - name: restart redis
   service:
     name: redis
