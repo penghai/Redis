@@ -12,3 +12,10 @@
     group: root
     owner: redis
     mode: '0640'
+  notify: restart redis
+
+- name: start redis
+  service:
+    name: redis
+    state: started
+    enabled: yes
