@@ -39,11 +39,15 @@
 
 - name: overcommit_memory is set to 1
   sysctl:
-    name: vm.overcommit_memory
-    value: '1'
+    name: '{{ item.name }}'
+    value: '{{ item.value }}'
     state: present
     sysctl_set: yes
     reload: yes
+  with_items:
+    - { name: 'vm.overcommit_memory',value: '1' }
+    - { name: 'net.ipv4.tcp_max_syn_backlog',value: '8192' }
+    - { name: 'net.core.somaxconn',value: '1024' }
 
 - name: THP is disabled 
   blockinfile:
