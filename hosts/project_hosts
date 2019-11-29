@@ -1,13 +1,9 @@
-[redis_nodes:children]
-redis_server_nodes
-sentinel_nodes
-
-[redis_server_nodes]
-#192.168.1.11 ansible_ssh_host=192.168.1.11 ansible_ssh_user=root ansible_ssh_pass=centos
-#192.168.1.12 ansible_ssh_host=192.168.1.12 ansible_ssh_user=root ansible_ssh_pass=centos
-192.168.1.13 ansible_ssh_host=192.168.1.13 ansible_ssh_user=root ansible_ssh_pass=centos
+[redis_nodes]
+#172.16.14.31 ansible_ssh_host=172.16.14.31 ansible_ssh_user=root ansible_ssh_pass=nd6xrootroot
+#172.16.14.32 ansible_ssh_host=172.16.14.32 ansible_ssh_user=root ansible_ssh_pass=nd6xrootroot
+172.16.14.33 ansible_ssh_host=172.16.14.33 ansible_ssh_user=root ansible_ssh_pass=nd6xrootroot
 
 [sentinel_nodes]
-#192.168.1.11 ansible_ssh_host=192.168.1.11 ansible_ssh_user=root ansible_ssh_pass=centos
-#192.168.1.12 ansible_ssh_host=192.168.1.12 ansible_ssh_user=root ansible_ssh_pass=centos
-192.168.1.13 ansible_ssh_host=192.168.1.13 ansible_ssh_user=root ansible_ssh_pass=centos
+#172.16.14.31 ansible_ssh_host=172.16.14.31 ansible_ssh_user=root ansible_ssh_pass=nd6xrootroot
+#172.16.14.32 ansible_ssh_host=172.16.14.32 ansible_ssh_user=root ansible_ssh_pass=nd6xrootroot
+172.16.14.33 ansible_ssh_host=172.16.14.33 ansible_ssh_user=root ansible_ssh_pass=nd6xrootroot

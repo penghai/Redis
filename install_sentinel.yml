@@ -1,0 +1,5 @@
+- hosts: sentinel_nodes
+  vars_files:
+    - "vars/redis.yml"
+  roles:
+  - role: sentinel

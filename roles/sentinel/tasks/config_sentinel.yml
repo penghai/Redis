@@ -1,0 +1,14 @@
+- name: copy sentinel service file
+  template:
+    src: redis-sentinel.service
+    dest: /usr/lib/systemd/system/redis-sentinel.service
+    mode: '0644'
+  notify: systemctl daemon-reload
+
+- name: copy sentinel config file
+  template:
+    src: sentinel.conf
+    dest: /etc/sentinel.conf
+    group: root
+    owner: redis
+    mode: '0640'

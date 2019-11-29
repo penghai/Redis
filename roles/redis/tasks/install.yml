@@ -11,6 +11,7 @@
     home: /var/lib/redis
     shell: /sbin/nologin
     user: redis
+    system: yes
     state: present
 
 - name: create redis log and run directory
@@ -30,7 +31,13 @@
     dest: /usr/bin/
     mode: '0755'
 
-- name: Set /etc/sysctl.conf
+- name: link redis-sentinel 
+  file:
+    src: /usr/bin/redis-server
+    dest: /usr/bin/redis-sentinel
+    state: link
+
+- name: overcommit_memory is set to 1
   sysctl:
     name: vm.overcommit_memory
     value: '1'
@@ -38,4 +45,9 @@
     sysctl_set: yes
     reload: yes
 
-
+- name: THP is disabled 
+  blockinfile:
+    path: /etc/rc.local
+    block: "echo never > /sys/kernel/mm/transparent_hugepage/enabled"
+    state: present
+  notify: source /etc/rc.local
