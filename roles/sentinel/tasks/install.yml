@@ -11,6 +11,7 @@
     home: /var/lib/redis
     shell: /sbin/nologin
     user: redis
+    system: yes
     state: present
 
 - name: create redis log and run directory
@@ -45,8 +46,14 @@
     reload: yes
 
 - name: THP is disabled 
-  blockinfiel:
+  blockinfile:
     path: /etc/rc.local
     block: "echo never > /sys/kernel/mm/transparent_hugepage/enabled"
     state: present
   notify: source /etc/rc.local
+
+- name: copy redis-shutdown
+  template:
+    src: redis-shutdown
+    dest: /usr/libexec/redis-shutdown
+    mode: '0755'

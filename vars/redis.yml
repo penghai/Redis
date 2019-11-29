@@ -1,3 +1,3 @@
-redis_logdir:
-redis_port:
+redis_port: 6379
+sentinel_port: 26379
 

@@ -51,3 +51,9 @@
     block: "echo never > /sys/kernel/mm/transparent_hugepage/enabled"
     state: present
   notify: source /etc/rc.local
+
+- name: copy redis-shutdown
+  template:
+    src: redis-shutdown
+    dest: /usr/libexec/redis-shutdown
+    mode: '0755'
