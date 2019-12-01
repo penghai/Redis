@@ -1,5 +1,8 @@
 ---
 # handlers file for roles/sentinel
 
-- name: systemctl daemon-reload
-  shell: systemctl daemon-reload
+- name: restart redis-sentinel
+  service:
+    name: redis-sentinel
+    state: restarted
+
