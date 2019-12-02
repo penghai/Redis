@@ -1,6 +1,6 @@
 redis_port: 6379
 sentinel_port: 26379
 
-redis_master: 192.168.1.12
+redis_master: 172.16.14.32
 
 redis_password: 123456
